@@ -1,0 +1,7 @@
+{% load static %}
+{% load custom_tags %}
+
+{% if classification.has_picture %}
+    <img src="{% static classification.name|imgsrc %}" width="36" height="36"/>
+{% endif %}
+<a href="{% url 'classifications:classification-detail' classification.pk %}">{{ classification.pk }}</a>

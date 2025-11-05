@@ -1,0 +1,13 @@
+{% extends "craft_base.html" %}
+
+{% block content %}
+<h1>Classifications</h1>
+{% for classification in object_list %}
+    <li>
+        {% include "classifications/classification.html" with classification=classification %}
+    </li>
+{% empty %}
+    <li>No classifications.</li>
+{% endfor %}
+</ul>
+{% endblock %}

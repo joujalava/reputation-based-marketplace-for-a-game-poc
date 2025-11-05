@@ -1,0 +1,52 @@
+[
+    {
+       "model":"classifications.classification",
+       "pk":"fruit",
+       "fields":{
+          "name":"fruit",
+          "parent":null,
+          "has_picture":false,
+          "has_crafts": false
+       }
+    },
+    {
+      "model":"classifications.classification",
+      "pk":"apple",
+      "fields":{
+         "name":"apple",
+         "parent":"fruit",
+         "has_picture":true,
+         "has_crafts": true
+      }
+   },
+   {
+      "model":"classifications.classification",
+      "pk":"kiwi",
+      "fields":{
+         "name":"kiwi",
+         "parent":"fruit",
+         "has_picture":true,
+         "has_crafts": true
+      }
+   },
+   {
+      "model":"classifications.classification",
+      "pk":"onion",
+      "fields":{
+         "name":"onion",
+         "parent":"fruit",
+         "has_picture":true,
+         "has_crafts": true
+      }
+   },
+   {
+      "model":"classifications.classification",
+      "pk":"orange",
+      "fields":{
+         "name":"orange",
+         "parent":"fruit",
+         "has_picture":true,
+         "has_crafts": true
+      }
+   }
+ ]

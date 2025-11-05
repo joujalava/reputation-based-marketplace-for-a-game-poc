@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block base_content %}
+<h1>{{ object.username }}</h1>
+<p>Character name: {{ object.profile.character_name }}</p>
+<p>Reputation: {{ object.profile.reputation }}</p>
+<p>Email: {{ object.email }}</p>
+<p>Joined at: {{ object.date_joined }}</p>
+<a href="{% url 'accounts:character-name-change' %}">Change character name</a>
+<a href="{% url 'accounts:user-update' %}">Update account</a>
+<a href="{% url 'accounts:password-change' %}">Change password</a>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>My site</title>
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}" />
+    </head>
+    <body>
+        <div class="header">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'classifications:classification-list' %}">Crafts</a>
+            <a href="{% url 'carry_services:carry-service-list' %}">Carry Services</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'accounts:profile' %}">{{ user.username }}</a>
+            <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+            {% else %}
+            <a href="{% url 'accounts:login' %}">Login</a>
+            <a href="{% url 'accounts:registration' %}">Register</a>
+            {% endif %}
+        </div>
+        {% block base_content %}
+            replace me
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,52 @@
+{% extends "craft_base.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block content %}
+{% if classification.parent != None %}
+    <a href="{% url 'classifications:classification-detail' classification.parent.pk %}">Go back</a>
+{% else %}
+    <a href="{% url 'classifications:classification-list' %}">Go back</a>
+{% endif %}
+<h2>{{ classification.name }}</h2>
+{% if classification.has_picture %}
+    <img src="{% static classification.name|imgsrc %}" width="36" height="36"/>
+{% endif %}
+{% if object.has_crafts %}
+    <h1>Crafts</h1>
+    <form method="GET">
+        <label for="searchby">Search by:</label>
+        <select id="searchby" name="searchby" selected="{{ search_by }}">
+            <option value="seller">Seller</option>
+            <option value="buyer">Buyer</option>
+        </select>
+        <label for="search">Search:</label>
+        <input id="search" name="search" type="search" autocomplete="off" value="{{ search }}"/>
+        <input type="submit" value="Search" />
+    </form>
+    <ul>
+    {% for craft in craft_list %}
+        <li>
+            <a href="{% url 'crafts:craft-detail' craft.pk %}">{{ craft.seller }}</a>
+            <p>Amount: {{ craft.amount }}</p>
+            <p>Price: {{ craft.price }}</p>
+            <p>Currency: {{ craft.currency }}</p>
+            {% if craft.buyer %}
+                <p>Buyer: {{ craft.buyer }}</p>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No crafts.</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if classification_list %}
+    <h1>Classifications</h1>
+    {% for classification in classification_list %}
+        <li>
+            {% include "classifications/classification.html" with classification=classification %}
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

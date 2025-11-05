@@ -1,0 +1,10 @@
+{% extends 'craft_base.html' %}
+
+{% block content %}
+    <a href="{% url 'crafts:craft-detail' object.pk %}">Go back</a>
+    <h3>Are you sure?</h3>
+    <p>You're about to delete {{ object.classification.name }}. Please confirm.</p>
+    <form method="post">{% csrf_token %}
+        <input type="submit" value="Confirm"/>
+    </form>
+{% endblock %}

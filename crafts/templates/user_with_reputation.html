@@ -1,0 +1,4 @@
+{{ user.username }}, reputation: {{ user.profile.reputation }}
+{% if not user.profile.character_name %}
+    !!!User has not set character name!!!
+{% endif %}

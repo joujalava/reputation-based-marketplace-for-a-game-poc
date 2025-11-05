@@ -1,0 +1,20 @@
+{% extends "carryservice_base.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block content %}
+<h1>Carry Services</h1>
+{% for carry_service in object_list %}
+    <li>
+        <a href="{% url 'carry_services:carry-service-detail' carry_service.pk %}">{{ carry_service.seller.username }}</a>
+        <p>Price: {{ carry_service.price }}</p>
+        <p>Currency: {{ carry_service.currency }}</p>
+        {% if carry_service.buyer %}
+            <p>Buyer: {{ carry_service.buyer }}</p>
+        {% endif %}
+    </li>
+{% empty %}
+    <li>No carryservices.</li>
+{% endfor %}
+</ul>
+{% endblock %}

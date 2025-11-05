@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block base_content %}
+<a href="{% url 'accounts:profile' %}">Go back</a>
+<h1>Update profile</h1>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+</form>
+{% endblock %}

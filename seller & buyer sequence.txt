@@ -1,0 +1,13 @@
+@startuml
+actor Seller
+participant Website
+actor Buyer
+
+Seller -> Website: Creates listing
+Buyer -> Website: Adds themselves as a potential buyer
+Seller -> Website: Selects potential buyer
+Seller --> Buyer: Sends item
+Buyer --> Seller: Pays for item
+Seller -> Website: Did the buyer pay?
+Buyer -> Website: Did the seller send the item?
+@enduml

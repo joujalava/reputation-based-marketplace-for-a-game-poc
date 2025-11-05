@@ -1,0 +1,49 @@
+{% extends "carryservice_base.html" %}
+
+{% block content %}
+<h1>Carry Service</h1>
+<p>Price: {{ object.price }}</p>
+<p>Currency: {{ object.currency }}</p>
+<p>Seller: {% include "user_with_reputation.html" with user=object.seller %}</p>
+<p>Created at: {{ object.created_at }}</p>
+{% if has_buyer %}
+    <p>Buyer: {% include "user_with_reputation.html" with user=object.buyer %}</p>
+    {% if is_buyer %}
+        <p>Seller character name: {{ object.seller.profile.character_name }}</p>
+        {% if buyer_trade_open %}
+            <a href="{% url 'carry_services:carry-service-buyer-outcome' object.pk %}">Close trade</a>
+        {% endif %}
+    {% endif %}
+    {% if is_seller %}
+        <p>Buyer character name: {{ object.buyer.profile.character_name }}</p>
+        {% if seller_trade_open %}
+            <a href="{% url 'carry_services:carry-service-seller-outcome' object.pk %}">Close trade</a>
+        {% endif %}
+    {% endif %}
+{% else %}
+    {% if is_seller %}
+        <a href="{% url 'carry_services:carry-service-select-buyer' object.pk %}">Select buyer</a>
+        <a href="{% url 'carry_services:carry-service-delete' object.pk %}">Delete</a>
+    {% else %}
+        {% if is_potential_buyer %}
+        <form action="{% url 'carry_services:carry-service-remove-potential-buyer' object.pk %}" method="POST">{% csrf_token %}
+            <input type="submit" value="Remove yourself from potential buyers" />
+        </form>
+        {% else %}
+        <form action="{% url 'carry_services:carry-service-add-potential-buyer' object.pk %}" method="POST">{% csrf_token %}
+            <input type="submit" value="Add yourself to potential buyers" />
+        </form>
+        {% endif %} 
+    {% endif %}
+    <p>Potential buyers</p>
+    <ul>
+    {% for potentialBuyer in object.potential_buyers %}
+        <li>
+            {% include "user_with_reputation.html" with user=potentialBuyer.buyer %}
+        </li>
+    {% empty %}
+        <li>No potential buyers.</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
