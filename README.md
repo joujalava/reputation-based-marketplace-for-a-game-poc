@@ -1,4 +1,12 @@
-# Django
+# reputation-based-marketplace
+
+Reputation based marketplace. The process for trades is shown here:
+
+![Trade Process](./seller%20%26%20buyer%20sequence.svg)
+
+## Technologies used
+
+Python & Django
 
 ## Getting Started
     
