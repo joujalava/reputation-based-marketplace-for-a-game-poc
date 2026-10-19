@@ -7,7 +7,14 @@ Seller -> Website: Creates listing
 Buyer -> Website: Adds themselves as a potential buyer
 Seller -> Website: Selects potential buyer
 Seller --> Buyer: Sends item
+note right
+  Items are sent and paid in the game
+end note
 Buyer --> Seller: Pays for item
 Seller -> Website: Did the buyer pay?
 Buyer -> Website: Did the seller send the item?
+note over Website
+  Update buyer and seller reputation
+  based on answers
+end note
 @enduml
